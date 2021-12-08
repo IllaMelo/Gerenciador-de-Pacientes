@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller 
 @RequestMapping(path = "/demo") 
+@CrossOrigin(origins = "*")
 public class PacienteController {
 
     @Autowired 
@@ -39,7 +40,26 @@ public class PacienteController {
 
     @GetMapping(path = "/all")
     public @ResponseBody Iterable<Paciente> getAllPacientes() {
-        return pRepository.findAll();
+        return pRepository.findAll(/*Sort.by(Sort.Direction.ASC, "id")*/);
+    }
+
+    @PutMapping(path = "/atualizar/{id}")
+    public @ResponseBody String atualizarPaciente(@PathVariable int id,@RequestParam String Nome, @RequestParam String Local, @RequestParam String Fim,
+    @RequestParam String Saida, @RequestParam String Inicio, @RequestParam String Entrada){
+        Paciente p = pRepository.findById(id);
+        p.setNome(Nome);
+        p.setLocal(Local);
+        p.setInicio(Inicio);
+        p.setFim(Fim);
+        p.setEntrada(Entrada);
+        p.setSaida(Saida);
+        pRepository.save(p);
+        return "Atualizado."; 
+    }
+    @DeleteMapping(path = "/excluir/{id}")
+    public @ResponseBody String excluirPaciente(@PathVariable int id){
+        pRepository.deleteById(id);
+        return "Excluido.";
     }
     
 }

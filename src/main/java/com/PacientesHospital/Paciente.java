@@ -19,6 +19,13 @@ public class Paciente {
     private String Entrada;
     private String Saida;
 
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return Nome;
     }
