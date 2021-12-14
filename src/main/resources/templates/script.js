@@ -61,7 +61,7 @@ function status(status) {
     }
 }
 
-function limparCampos() {
+function limpar() {
     document.getElementById("id").value = "";
     document.getElementById("nome").value = "";
     document.getElementById("status").value = "";
