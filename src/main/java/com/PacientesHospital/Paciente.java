@@ -13,6 +13,7 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nome;
+    private String status;
     private String local;
     private String inicio;
     private String fim;
@@ -21,6 +22,12 @@ public class Paciente {
 
     public Integer getId() {
         return id;
+    }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
     public void setId(Integer id) {
         this.id = id;

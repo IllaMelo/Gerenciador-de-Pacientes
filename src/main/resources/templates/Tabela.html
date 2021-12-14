@@ -5,22 +5,24 @@
     <meta charset="UTF-8">
     <title>Pacientes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="script.js" ></script>
     
 </head>
     <body>
-        <div class="container mt-3">
-            <div class="col-lg-12 p-3 my-3" style="text-align: right; position: absolute; ">
-                <form th:action="@{/logout}" method="post">
-                    <input type="submit" class="btn btn-danger" value="Sair" />
-                </form>
-            </div>
-    
-            <div class="row">
-                <div class="container p-3 bg-primary text-white" style="position: relative; text-align: center;">
-                    <h2>Pacientes do centro cirurgico<samp id="ver"></samp></h2>
-                    
+        <div class="container mt-1">
+            <div class = "cabeçalho" style="display: block;">
+                <div class="col-lg-12 p-3 my-3" style="position: absolute; z-index: 10;">
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" class="btn btn-danger" value="Sair" />
+                    </form>
                 </div>
-                
+        
+                <div class="row">
+                    <div class="container p-4 bg-primary text-white" style="position: relative; display: inline-block ; text-align: center; margin-top: -10px;">
+                        <h2>Pacientes do centro cirurgico<samp id="ver"></samp></h2>
+                        <h3>                             </h3>
+                        
+                    </div>
             </div>
             <br>
         <div class="container mt-3">
@@ -38,6 +40,7 @@
                         <th>Id</th>
                         <th>Nome</th>
                         <th>Status</th>
+                        <th>Local</th>
                         <th>Entrada Prevista</th>
                         <th>Inicio Previsto</th>
                         <th>Fim da Cirurgia</th>
@@ -48,5 +51,6 @@
                 </tbody>
             </table>
         </div>
+        <script>atualizarTabela()</script>
     </body>
 </html>

@@ -1,4 +1,5 @@
 lsPacientes = [];
+
 function gravar() {
     
     var id = document.getElementById("id").value;
@@ -36,7 +37,7 @@ function gravar() {
 
     }
 }
-function status(status) {
+function Status(status) {
     switch (status) {
     case '1':
         return {
@@ -79,6 +80,7 @@ function atualizarTabela() {
     xhttp.onload = function () {
         lsPacientes = JSON.parse(this.responseText);
         carregarPagina(0);
+        Status();
     }
 }
 

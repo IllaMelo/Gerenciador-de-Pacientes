@@ -22,16 +22,18 @@ public class PacienteController {
     private PacienteRepository pRepository;
 
     @PostMapping(path = "/add")
-    public @ResponseBody String addNovoPaciente(@RequestParam String nome, @RequestParam String local, @RequestParam String fim,
-    @RequestParam String saida, @RequestParam String inicio, @RequestParam String entrada) {
+    public @ResponseBody String addNovoPaciente(@RequestParam String nome, @RequestParam String status, 
+    @RequestParam String local, @RequestParam String entrada,
+    @RequestParam String fim, @RequestParam String saida, @RequestParam String inicio) {
 
       
         Paciente p = new Paciente();
         p.setNome(nome);
+        p.setStatus(status);
         p.setLocal(local);
+        p.setEntrada(entrada);
         p.setInicio(inicio);
         p.setFim(fim);
-        p.setEntrada(entrada);
         p.setSaida(saida);
         pRepository.save(p);
         return "Gravado.";    
@@ -45,13 +47,14 @@ public class PacienteController {
 
     @PutMapping(path = "/atualizar/{id}")
     public @ResponseBody String atualizarPaciente(@PathVariable int id,@RequestParam String nome, @RequestParam String local, @RequestParam String fim,
-    @RequestParam String saida, @RequestParam String inicio, @RequestParam String entrada){
+    @RequestParam String saida, @RequestParam String inicio, @RequestParam String entrada,  @RequestParam String status){
         Paciente p = pRepository.findById(id);
         p.setNome(nome);
+        p.setStatus(status);
         p.setLocal(local);
+        p.setEntrada(entrada);
         p.setInicio(inicio);
         p.setFim(fim);
-        p.setEntrada(entrada);
         p.setSaida(saida);
         pRepository.save(p);
         return "Atualizado."; 
