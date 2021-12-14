@@ -22,17 +22,17 @@ public class PacienteController {
     private PacienteRepository pRepository;
 
     @PostMapping(path = "/add")
-    public @ResponseBody String addNovoPaciente(@RequestParam String Nome, @RequestParam String Local, @RequestParam String Fim,
-    @RequestParam String Saida, @RequestParam String Inicio, @RequestParam String Entrada) {
+    public @ResponseBody String addNovoPaciente(@RequestParam String nome, @RequestParam String local, @RequestParam String fim,
+    @RequestParam String saida, @RequestParam String inicio, @RequestParam String entrada) {
 
       
         Paciente p = new Paciente();
-        p.setNome(Nome);
-        p.setLocal(Local);
-        p.setInicio(Inicio);
-        p.setFim(Fim);
-        p.setEntrada(Entrada);
-        p.setSaida(Saida);
+        p.setNome(nome);
+        p.setLocal(local);
+        p.setInicio(inicio);
+        p.setFim(fim);
+        p.setEntrada(entrada);
+        p.setSaida(saida);
         pRepository.save(p);
         return "Gravado.";    
       
@@ -40,19 +40,19 @@ public class PacienteController {
 
     @GetMapping(path = "/all")
     public @ResponseBody Iterable<Paciente> getAllPacientes() {
-        return pRepository.findAll(/*Sort.by(Sort.Direction.ASC, "id")*/);
+        return pRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     @PutMapping(path = "/atualizar/{id}")
-    public @ResponseBody String atualizarPaciente(@PathVariable int id,@RequestParam String Nome, @RequestParam String Local, @RequestParam String Fim,
-    @RequestParam String Saida, @RequestParam String Inicio, @RequestParam String Entrada){
+    public @ResponseBody String atualizarPaciente(@PathVariable int id,@RequestParam String nome, @RequestParam String local, @RequestParam String fim,
+    @RequestParam String saida, @RequestParam String inicio, @RequestParam String entrada){
         Paciente p = pRepository.findById(id);
-        p.setNome(Nome);
-        p.setLocal(Local);
-        p.setInicio(Inicio);
-        p.setFim(Fim);
-        p.setEntrada(Entrada);
-        p.setSaida(Saida);
+        p.setNome(nome);
+        p.setLocal(local);
+        p.setInicio(inicio);
+        p.setFim(fim);
+        p.setEntrada(entrada);
+        p.setSaida(saida);
         pRepository.save(p);
         return "Atualizado."; 
     }

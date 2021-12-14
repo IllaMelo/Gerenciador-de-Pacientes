@@ -12,12 +12,12 @@ public class Paciente {
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String Nome;
-    private String Local;
-    private String Inicio;
-    private String Fim;
-    private String Entrada;
-    private String Saida;
+    private String nome;
+    private String local;
+    private String inicio;
+    private String fim;
+    private String entrada;
+    private String saida;
 
     public Integer getId() {
         return id;
@@ -27,40 +27,40 @@ public class Paciente {
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     public String getSaida() {
-        return Saida;
+        return saida;
     }
-    public void setSaida(String Saida) {
-        this.Saida = Saida;
+    public void setSaida(String saida) {
+        this.saida = saida;
     }
     public String getEntrada() {
-        return Entrada;
+        return entrada;
     }
-    public void setEntrada(String Entrada) {
-        this.Entrada = Entrada;
+    public void setEntrada(String entrada) {
+        this.entrada = entrada;
     }
     public String getFim() {
-        return Fim;
+        return fim;
     }
-    public void setFim(String Fim) {
-        this.Fim = Fim;
+    public void setFim(String fim) {
+        this.fim = fim;
     }
     public String getInicio() {
-        return Inicio;
+        return inicio;
     }
-    public void setInicio(String Inicio) {
-        this.Inicio = Inicio;
+    public void setInicio(String inicio) {
+        this.inicio = inicio;
     }
     public String getLocal() {
-        return Local;
+        return local;
     }
-    public void setLocal(String Local) {
-        this.Local = Local;
+    public void setLocal(String local) {
+        this.local = local;
     }
    
     
