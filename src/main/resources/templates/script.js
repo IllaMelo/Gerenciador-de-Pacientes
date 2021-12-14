@@ -37,7 +37,7 @@ function gravar() {
 
     }
 }
-function Status(status) {
+function status(status) {
     switch (status) {
     case '1':
         return {
@@ -80,7 +80,7 @@ function atualizarTabela() {
     xhttp.onload = function () {
         lsPacientes = JSON.parse(this.responseText);
         carregarPagina(0);
-        Status();
+        
     }
 }
 
