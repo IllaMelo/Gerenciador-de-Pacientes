@@ -41,7 +41,7 @@ public class PacienteController {
     }
 
     @GetMapping(path = "/all")
-    public @ResponseBody Iterable<Paciente> getAllPacientes() {
+    public @ResponseBody Iterable<Paciente> getAllPacientes(@RequestParam String id) {
         return pRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 

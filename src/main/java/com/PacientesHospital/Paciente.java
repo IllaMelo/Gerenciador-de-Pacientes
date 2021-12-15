@@ -5,13 +5,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
+
 @Entity
 public class Paciente {
 
 
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     private String nome;
     private String status;
     private String local;
@@ -23,12 +24,7 @@ public class Paciente {
     public Integer getId() {
         return id;
     }
-    public String getStatus() {
-        return status;
-    }
-    public void setStatus(String status) {
-        this.status = status;
-    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -38,6 +34,12 @@ public class Paciente {
     }
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
     public String getSaida() {
         return saida;

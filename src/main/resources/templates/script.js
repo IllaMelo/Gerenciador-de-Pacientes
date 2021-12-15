@@ -44,6 +44,11 @@ function status(status) {
             label : 'Pré-Operatório',
             cor : '#fbd972'
         };
+     case '2':
+        return {
+            label : 'Transferído',
+            cor : '#b8daff'
+        };
     case '3':
         return {
             label : 'Em sala cirúrgica',
@@ -54,11 +59,7 @@ function status(status) {
             label : 'Em recuperação',
             cor : '#89e89f'
         };
-    case '2':
-        return {
-            label : 'Transferído',
-            cor : '#b8daff'
-        };
+   
     }
 }
 
@@ -84,6 +85,7 @@ function atualizarTabela() {
     }
 }
 
+
 function carregarPagina(pg) {
     qtPagina = lsPacientes.length / 5;
     if (qtPagina % 5 > 0) {
@@ -104,7 +106,7 @@ function carregarPagina(pg) {
         txtPaginas += `<li class="page-item" onclick='carregarPagina(${proxima})'><a class="page-link" href="#">></a></li>`;
         document.getElementById("lsPagina").innerHTML = txtPaginas;
     }
-    //-----------------------------------------------------------
+    
 
     texto = "";
     pg = 5 * pg;
