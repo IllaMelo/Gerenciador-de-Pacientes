@@ -12,7 +12,7 @@ public class Paciente {
 
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private int id;
     private String nome;
     private String status;
     private String local;

@@ -10,18 +10,14 @@ function gravar() {
     var inicio = document.getElementById("inicio").value;
     var fim = document.getElementById("fim").value;
     var saida = document.getElementById("saida").value;
-    url = `nome = ${nome}& status = ${status}&local = ${local}
-    &entrada = ${entrada}&inicio = ${inicio}&fim = ${fim}&saida = ${saida}`;
+    url = `nome=${nome}& status=${status}&local=${local}&entrada=${entrada}&inicio=${inicio}&fim=${fim}&saida=${saida}`;
     
     if (nome==""){
         alert("Preencha com o nome do paciente.");
         return;
     }
-    
-
-
     const xhttp = new XMLHttpRequest();
-    if (id == '') {
+    if (id =="") {
         xhttp.open("POST", "/demo/add?" + url);
     } else {
         xhttp.open("PUT", `/demo/atualizar/${id}?${url}`);
@@ -39,24 +35,24 @@ function gravar() {
 }
 function status(status) {
     switch (status) {
-    case '1':
+    case 'Pré-Operatório':
         return {
             label : 'Pré-Operatório',
             cor : '#fbd972'
         };
-     case '2':
+     case 'Transferído':
         return {
             label : 'Transferído',
             cor : '#b8daff'
         };
-    case '3':
+    case 'EmCirúrgia':
         return {
-            label : 'Em sala cirúrgica',
+            label : 'Em Cirúrgia',
             cor : '#fd5766'
         };
-    case '4':
+    case 'EmRecuperação':
         return {
-            label : 'Em recuperação',
+            label : 'Em Recuperação',
             cor : '#89e89f'
         };
    
@@ -111,30 +107,30 @@ function carregarPagina(pg) {
     texto = "";
     pg = 5 * pg;
     for (i = pg; i <= pg + 4; i++) {
-        u = lsPacientes[i];
-        if (u != undefined) {
-            texto += `<tr onclick='carregarPaciente(${i})'><td>${u.id}</td><td>${u.nome}</td><td>${u.status}</td><td>${u.local}</td><td>${u.entrada}</td>
-            <td>${u.inicio}</td><td>${u.fim}</td><td>${u.saida}</td></tr>`;
+        p = lsPacientes[i];
+        if (p != undefined) {
+            texto += `<tr onclick='carregarPaciente(${i})'><td>${p.id}</td><td>${p.nome}</td><td>${p.status}</td><td>${p.local}</td><td>${p.entrada}</td>
+            <td>${p.inicio}</td><td>${p.fim}</td><td>${p.saida}</td></tr>`;
         }
     }
     document.getElementById("tbCorpo").innerHTML = texto;
 }
 
 function carregarPaciente(i) {
-    u = lsPacientes[i];
-    document.getElementById("id").value = u.id;
-    document.getElementById("nome").value = u.nome ;
-    document.getElementById("local").value = u.local;
-    document.getElementById("entrada").value= u.entrada ;
-    document.getElementById("inicio").value=u.inicio ;
-    document.getElementById("fim").value= u.fim;
-    document.getElementById("saida").value= u.saida;
+    p = lsPacientes[i];
+    document.getElementById("id").value = p.id;
+    document.getElementById("nome").value = p.nome ;
+    document.getElementById("local").value = p.local;
+    document.getElementById("entrada").value= p.entrada ;
+    document.getElementById("inicio").value=p.inicio ;
+    document.getElementById("fim").value= p.fim;
+    document.getElementById("saida").value= p.saida;
     
 }
 
 function apagar() {
     id = document.getElementById("id").value;
-    if (id == '') {
+    if (id > 0) {
         alert("Selecione um registro!");
         return;
     }
