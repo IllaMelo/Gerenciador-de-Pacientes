@@ -85,7 +85,7 @@ function carregarPagina(pg) {
     for (i = pg; i <= pg + 4; i++) {
         p = lsPacientes[i];
         if (p != undefined) {
-            texto += `<tr onclick='carregarPaciente(${i})'><td>${p.id}</td><td>${p.nome}</td><td id = "cor">${p.status}</td><td>${p.local}</td><td>${p.entrada}</td>
+            texto += `<tr onclick='carregarPaciente(${i})'><td>${p.id}</td><td>${p.nome}</td><td>${p.status}</td><td>${p.local}</td><td>${p.entrada}</td>
             <td>${p.inicio}</td><td>${p.fim}</td><td>${p.saida}</td></tr>`;
         }
     
