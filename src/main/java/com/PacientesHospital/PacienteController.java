@@ -22,9 +22,7 @@ public class PacienteController {
     private PacienteRepository pRepository;
 
     @PostMapping(path = "/add")
-    public @ResponseBody String addNovoPaciente(@RequestParam String nome, @RequestParam String status, 
-    @RequestParam String local, @RequestParam String entrada,
-    @RequestParam String fim, @RequestParam String saida, @RequestParam String inicio) {
+    public @ResponseBody String addNovoPaciente(@RequestParam String nome, @RequestParam String status,@RequestParam String local,@RequestParam String entrada,@RequestParam String fim, @RequestParam String saida, @RequestParam String inicio) {
 
       
         Paciente p = new Paciente();
@@ -46,8 +44,7 @@ public class PacienteController {
     }
 
     @PutMapping(path = "/atualizar/{id}")
-    public @ResponseBody String atualizarPaciente(@PathVariable int id,@RequestParam String nome, @RequestParam String local, @RequestParam String fim,
-    @RequestParam String saida, @RequestParam String inicio, @RequestParam String entrada,  @RequestParam String status){
+    public @ResponseBody String atualizarPaciente(@PathVariable int id,@RequestParam String nome,@RequestParam String local,@RequestParam String fim,@RequestParam String saida,@RequestParam String inicio,@RequestParam String entrada,@RequestParam String status){
         Paciente p = pRepository.findById(id);
         p.setNome(nome);
         p.setStatus(status);
