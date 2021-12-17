@@ -4,12 +4,7 @@ function gravar() {
     
     var id = document.getElementById("id").value;
     var nome = document.getElementById("nome").value;
-    
-   
     var status = document.getElementById("status").value;
-    if(status.value == "Tranferido"){
-        status.Style.C
-    }
     var local = document.getElementById("local").value;
     var entrada = document.getElementById("entrada").value;
     var inicio = document.getElementById("inicio").value;
