@@ -106,7 +106,7 @@ function carregarPaciente(i) {
 
 function apagar() {
     id = document.getElementById("id").value;
-    if (id > 0) {
+    if (id == ") {
         alert("Selecione um registro!");
         return;
     }
