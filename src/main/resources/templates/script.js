@@ -7,9 +7,6 @@ function gravar() {
     
    
     var status = document.getElementById("status").value;
-    if(status.value == "Tranferido"){
-        status.Style.C
-    }
     var local = document.getElementById("local").value;
     var entrada = document.getElementById("entrada").value;
     var inicio = document.getElementById("inicio").value;
@@ -38,11 +35,7 @@ function gravar() {
 
     }
 }
-
-
-
-
-                
+             
 function limpar() {
     document.getElementById("id").value = "";
     document.getElementById("nome").value = "";
@@ -65,7 +58,6 @@ function atualizarTabela() {
     }
 }
 
-
 function carregarPagina(pg) {
     qtPagina = lsPacientes.length / 5;
     if (qtPagina % 5 > 0) {
@@ -87,8 +79,7 @@ function carregarPagina(pg) {
         document.getElementById("lsPagina").innerHTML = txtPaginas;
     }
     
-    
-
+ 
     texto = "";
     pg = 5 * pg;
     for (i = pg; i <= pg + 4; i++) {
@@ -101,8 +92,6 @@ function carregarPagina(pg) {
     }
     document.getElementById("tbCorpo").innerHTML = texto;
 }
-
-
 
 function carregarPaciente(i) {
     p = lsPacientes[i];
