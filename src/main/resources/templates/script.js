@@ -4,15 +4,13 @@ function gravar() {
     
     var id = document.getElementById("id").value;
     var nome = document.getElementById("nome").value;
-    
-   
     var status = document.getElementById("status").value;
     var local = document.getElementById("local").value;
     var entrada = document.getElementById("entrada").value;
     var inicio = document.getElementById("inicio").value;
     var fim = document.getElementById("fim").value;
     var saida = document.getElementById("saida").value;
-    url = `nome=${nome}& status=${status}&local=${local}&entrada=${entrada}&inicio=${inicio}&fim=${fim}&saida=${saida}`;
+    url = `nome=${nome}&status=${status}&local=${local}&entrada=${entrada}&inicio=${inicio}&fim=${fim}&saida=${saida}`;
     
     if (nome==""){
         alert("Preencha com o nome do paciente.");
@@ -35,7 +33,8 @@ function gravar() {
 
     }
 }
-             
+
+
 function limpar() {
     document.getElementById("id").value = "";
     document.getElementById("nome").value = "";
@@ -58,6 +57,7 @@ function atualizarTabela() {
     }
 }
 
+
 function carregarPagina(pg) {
     qtPagina = lsPacientes.length / 5;
     if (qtPagina % 5 > 0) {
@@ -79,23 +79,22 @@ function carregarPagina(pg) {
         document.getElementById("lsPagina").innerHTML = txtPaginas;
     }
     
- 
+
     texto = "";
     pg = 5 * pg;
     for (i = pg; i <= pg + 4; i++) {
         p = lsPacientes[i];
         if (p != undefined) {
-            texto += `<tr onclick='carregarPaciente(${i})'><td>${p.id}</td><td>${p.nome}</td><td id = "cor">${p.status}</td><td>${p.local}</td><td>${p.entrada}</td>
+            texto += `<tr onclick='carregarPaciente(${i})'><td>${p.id}</td><td>${p.nome}</td><td>${p.status}</td><td>${p.local}</td><td>${p.entrada}</td>
             <td>${p.inicio}</td><td>${p.fim}</td><td>${p.saida}</td></tr>`;
         }
-    
     }
-    document.getElementById("tbCorpo").innerHTML = texto;
+    document.getElementById("tbCorpo").innerHTML=texto;
 }
 
 function carregarPaciente(i) {
     p = lsPacientes[i];
-    document.getElementById("id").value = p.id;
+    document.getElementById("id").value=p.id;
     document.getElementById("nome").value = p.nome ;
     document.getElementById("local").value = p.local;
     document.getElementById("entrada").value= p.entrada ;
@@ -107,7 +106,7 @@ function carregarPaciente(i) {
 
 function apagar() {
     id = document.getElementById("id").value;
-    if (id =="") {
+    if (id > 0) {
         alert("Selecione um registro!");
         return;
     }
@@ -124,5 +123,3 @@ function apagar() {
         limpar();
     }
 }
-
-
