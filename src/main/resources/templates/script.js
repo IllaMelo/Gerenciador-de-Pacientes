@@ -4,7 +4,12 @@ function gravar() {
     
     var id = document.getElementById("id").value;
     var nome = document.getElementById("nome").value;
+    
+   
     var status = document.getElementById("status").value;
+    if(status.value == "Tranferido"){
+        status.Style.C
+    }
     var local = document.getElementById("local").value;
     var entrada = document.getElementById("entrada").value;
     var inicio = document.getElementById("inicio").value;
@@ -33,32 +38,11 @@ function gravar() {
 
     }
 }
-function status(status) {
-    switch (status) {
-    case 'Pré-Operatório':
-        return {
-            label : 'Pré-Operatório',
-            cor : '#fbd972'
-        };
-     case 'Transferído':
-        return {
-            label : 'Transferído',
-            cor : '#b8daff'
-        };
-    case 'EmCirúrgia':
-        return {
-            label : 'Em Cirúrgia',
-            cor : '#fd5766'
-        };
-    case 'EmRecuperação':
-        return {
-            label : 'Em Recuperação',
-            cor : '#89e89f'
-        };
-   
-    }
-}
 
+
+
+
+                
 function limpar() {
     document.getElementById("id").value = "";
     document.getElementById("nome").value = "";
@@ -103,18 +87,22 @@ function carregarPagina(pg) {
         document.getElementById("lsPagina").innerHTML = txtPaginas;
     }
     
+    
 
     texto = "";
     pg = 5 * pg;
     for (i = pg; i <= pg + 4; i++) {
         p = lsPacientes[i];
         if (p != undefined) {
-            texto += `<tr onclick='carregarPaciente(${i})'><td>${p.id}</td><td>${p.nome}</td><td>${p.status}</td><td>${p.local}</td><td>${p.entrada}</td>
+            texto += `<tr onclick='carregarPaciente(${i})'><td>${p.id}</td><td>${p.nome}</td><td id = "cor">${p.status}</td><td>${p.local}</td><td>${p.entrada}</td>
             <td>${p.inicio}</td><td>${p.fim}</td><td>${p.saida}</td></tr>`;
         }
+    
     }
     document.getElementById("tbCorpo").innerHTML = texto;
 }
+
+
 
 function carregarPaciente(i) {
     p = lsPacientes[i];
@@ -130,7 +118,7 @@ function carregarPaciente(i) {
 
 function apagar() {
     id = document.getElementById("id").value;
-    if (id > 0) {
+    if (id =="") {
         alert("Selecione um registro!");
         return;
     }
@@ -147,3 +135,5 @@ function apagar() {
         limpar();
     }
 }
+
+
