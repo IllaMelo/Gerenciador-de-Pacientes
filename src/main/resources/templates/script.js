@@ -33,11 +33,7 @@ function gravar() {
 
     }
 }
-
-
-
-
-                
+             
 function limpar() {
     document.getElementById("id").value = "";
     document.getElementById("nome").value = "";
