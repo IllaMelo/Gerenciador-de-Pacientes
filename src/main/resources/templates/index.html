@@ -1,114 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cadastro de Pacientes</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="script.js" ></script>
- 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="index.css" rel="stylesheet">
+
+    <title>Pacientes</title>
 </head>
 <body>
-    
-    <div class="container mt-3">
-        <div class = "cabeçalho" style="display: block;">
-            <div class="col-lg-12 p-3 my-3" style="position: absolute; z-index: 10;">
-                <form th:action="@{/logout}" method="post">
-                    <input type="submit" class="btn btn-danger" value="Sair" style="margin-left: 20px;" />
-                </form>  
-            </div>
-            <div>
-                
-                    <input type="button" onclick= "location.href='https://navue-3514.herokuapp.com/Tabela'" class="btn btn-light" value="Lista de Pacientes" style="position: absolute; z-index: 10; margin-top: 32px; margin-left: 100px"/>
-            </div>
-                
-                
-
-            <div class="row">
-                <div class="container p-3 bg-primary text-white" style="position: relative; display: inline-block ; text-align: center; margin-top: -10px;">
-                    <h2>Gerenciador de Pacientes<samp id="ver"></samp></h2>
-                    <h3>Centro Cirurgico</h3>
-                </div>
-        </div>
+        <main>
+           
+     
+                  
+                 
+                        
+                        
+        
             
-        </div>
-        <br>
+                        <div class="container-title">
+                            <h2>Gerenciador de Pacientes</h2>
+                            <h3>Centro Cirurgico</h3>
+                        </div>
+           
+                    
+            
+                <br>
+        
+                <form action="post" id="form-paciente" >
+                    <input type="hidden" id="id" name="id">
+                    <div class="col-1">
+                        <label for="nome">Nome: </label>
+                        <input type="text"id="nome">
+                    </div>
+                    <br>
+                    <div class ="row-2">
 
-        <form action="" id="form-paciente" >
-            <input type="hidden" id="id" name="id">
-            <div class="col-md-12">
-                <label for="nome">Nome: </label>
-                <input type="text" class="form-control" id="nome">
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="status">Status: </label>
-                    <select id = "status" class="form-control">
-                        <option value="Pré-Operatório">Pré-Operatório</option>
-                        <option value="Transferido">Transferido</option>
-                        <option value="Em Cirurgia">Em Cirurgia</option>
-                        <option value="Em Recuperação">Em Recuperação</option>
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label for="local">Local: </label>
-                    <input type="text"  class="form-control" id="local">
-                </div>
-            </div>
-           <br>
-            <div class ="row">
-                <div class="col-md-3">
-                    <label for="entrada">Entrada Prevista: </label>
-                    <input type="time" class="form-control"  id="entrada">
-                </div>
-                <div class="col-md-3">
-                    <label for="inicio">Inicio da Cirurgia: </label>
-                    <input type="time" class="form-control" id="inicio">
-                </div>
-                <div class="col-md-3">
-                    <label for="fim">Fim da Cirurgia: </label>
-                    <input type="time" class="form-control" id="fim">
-                </div>
-                <div class="col-md-3">
-                    <label for="saida"> Saida Prevista: </label>
-                    <input type="time" class="form-control" id="saida">
-                </div>
-            </div>
-            <br>
-            <button type="button" class="btn btn-primary" onclick="gravar()">Gravar</button>
-            <button type="button" class="btn btn-secondary" onclick="limpar()">Novo</button>
-            <button type="button" class="btn btn-danger" onclick="apagar()">Apagar</button>
-        </form>
-    </div>
-    <div class="container mt-3">
+                        <div class="col-2">
+                            <label for="status">Status: </label>
+                            <select id = "status" class="form-control">
+                                <option value="Pré-Operatório">Pré-Operatório</option>
+                                <option value="Transferido">Transferido</option>
+                                <option value="Em Cirurgia">Em Cirurgia</option>
+                                <option value="Em Recuperação">Em Recuperação</option>
+                            </select>
+                        </div>
 
-        <ul class="pagination justify-content-end" style="margin:20px 0" id="lsPagina">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>Status</th>
-                    <th>Local</th>
-                    <th>Entrada Prevista</th>
-                    <th>Inicio Previsto</th>
-                    <th>Fim da Cirurgia</th>
-                    <th>Saida Prevista</th>
-                </tr>
-            </thead>
-            <tbody style="cursor: pointer;" id="tbCorpo">
-            </tbody>
-        </table>
-    </div>
-    <script>atualizarTabela()</script>
+                        <div class="col-2">
+                            <label for="local">Local: </label>
+                            <input type="text" id="local">
+                        </div>
+                    </div>
+                   <br>
+                    <div class ="row-4">
+                        <div class="col-4">
+                            <label for="entrada">Entrada Prevista: </label>
+                            <input type="time" id="entrada">
+                        </div>
+                        <div class="col-4">
+                            <label for="inicio">Inicio da Cirurgia: </label>
+                            <input type="time"id="inicio">
+                        </div>
+                        <div class="col-4">
+                            <label for="fim">Fim da Cirurgia: </label>
+                            <input type="time"id="fim">
+                        </div>
+                        <div class="col-4">
+                            <label for="saida"> Saida Prevista: </label>
+                            <input type="time"id="saida">
+                        </div>
+                    </div>
+                    <br>
+                    <input type="button" id = "Gravar" value="Gravar">
+                    <input type="button" id = "Novo"  value="Novo">
+                    <input type="button" id = "Apagar"  value="Apagar">
+                </form>
+            </div>
+           
+        
+                <ul class="pagination"id="lsPag">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+                <table class="tbHead" id="tbHead">
+                    <thead>
+                        <tr>
+                          
+                            <th>Nome</th>
+                            <th >Status</th>
+                            <th>Local</th>
+                            <th>Entrada Prevista</th>
+                            <th>Inicio Previsto</th>
+                            <th>Fim da Cirurgia</th>
+                            <th>Saida Prevista</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            
+    
+        
+        </main>
+        <script src="index.js"></script>
+    
 </body>
-
 </html>
