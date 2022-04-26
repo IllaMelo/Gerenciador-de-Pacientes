@@ -1,6 +1,6 @@
 lsPacientes = [];
 
-function gravar() {
+const AdicionarPaciente=()=> {
     
     var id = document.getElementById("id").value;
     var nome = document.getElementById("nome").value;
@@ -10,55 +10,58 @@ function gravar() {
     var inicio = document.getElementById("inicio").value;
     var fim = document.getElementById("fim").value;
     var saida = document.getElementById("saida").value;
+
     url = `nome=${nome}&status=${status}&local=${local}&entrada=${entrada}&inicio=${inicio}&fim=${fim}&saida=${saida}`;
     
-    if (nome==""){
-        alert("Preencha com o nome do paciente.");
-        return;
+    const fields = document.getElementsByTagName("input")
+    for(i=0;i<=fields.length-3;i++){
+        if (fields[i+1].value = ""){
+            alert("Preencha todos os dados.")
+            return;
+        }
+        
     }
-    const xhttp = new XMLHttpRequest();
+        
+    
+    const xhttpaciente = new XMLHttpRequest()
     if (id =="") {
-        xhttp.open("POST", "/demo/add?" + url);
+        xhttp.open("POST", "/demo/add?" + url)
     } else {
-        xhttp.open("PUT", `/demo/atualizar/${id}?${url}`);
+        xhttp.open("PUT", `/demo/atualizar/${id}?${url}`)
     }
     xhttp.send();
-    xhttp.onload = function () {
-        msg = this.responseText;
-        alert(msg);
-        atualizarTabela();
+    xhttp.onload =  ()=> {
+        msg = this.responseText
+        alert(msg)
+        AtualizarTabela()
         if (msg.substring(0, 2) == 'Ok') {
-            limpar();
+            LimparCampos()
         }
 
     }
 }
 
 
-function limpar() {
-    document.getElementById("id").value = "";
-    document.getElementById("nome").value = "";
-    document.getElementById("status").value = "";
-    document.getElementById("local").value = "";
-    document.getElementById("entrada").value= "";
-    document.getElementById("inicio").value= "";
-    document.getElementById("fim").value= "";
-    document.getElementById("saida").value= "";
+const LimparCampos=()=>{
+    const fields = document.getElementsByTagName("input")
+    for(i=0;i<=fields.length-4;i++){
+        fields[i].value = ""
+    }
 }
 
-function atualizarTabela() {
-    const xhttp = new XMLHttpRequest();
+const AtualizarTabela=()=> {
+    const xhttpaciente = new XMLHttpRequest();
     xhttp.open("GET", "/demo/all");
     xhttp.send();
-    xhttp.onload = function () {
+    xhttp.onload = ()=> {
         lsPacientes = JSON.parse(this.responseText);
-        carregarPagina(0);
+        CarregarPagina(0);
         
     }
 }
 
 
-function carregarPagina(pg) {
+const CarregarPagina=(pg)=> {
     qtPagina = lsPacientes.length / 5;
     if (qtPagina % 5 > 0) {
         qtPagina++;
@@ -67,44 +70,71 @@ function carregarPagina(pg) {
     if (qtPagina > 1) {
         anterior = (pg == 0) ? 0 : pg - 1;
         proxima = (pg == qtPagina - 1) ? qtPagina - 1 : pg + 1;
-        txtPaginas = `<li class="page-item " onclick='carregarPagina(${anterior})'><a class="page-link" href="#"><</a></li>`;
+        txtPaginas = 
+        `<li class="page-item " onclick='carregarPagina(${anterior})'>
+        <a class="page-link" href="#"><</a>
+        </li>`
         for (i = 1; i <= qtPagina; i++) {
-            txtPaginas += `<li class="page-item `;
+            txtPaginas += `<li class="page-item `
             if (i - 1 == pg) {
-                txtPaginas += "active";
+                txtPaginas += "active"
             }
-            txtPaginas += `" onclick='carregarPagina(${i - 1})' ><a class="page-link" href="#">${i}</a></li>`;
+            txtPaginas += `" onclick='carregarPagina(${i - 1})' >
+            <a class="page-link" href="#">${i}</a></li>`
         }
-        txtPaginas += `<li class="page-item" onclick='carregarPagina(${proxima})'><a class="page-link" href="#">></a></li>`;
-        document.getElementById("lsPagina").innerHTML = txtPaginas;
+        txtPaginas += 
+        `<li class="page-item" onclick='carregarPagina(${proxima})'>
+        <a class="page-link" href="#">></a></li>`
+        document.getElementById("lsPagina").innerHTML = txtPaginas
     }
     
 
-    texto = "";
+    Linha = "";
     pg = 5 * pg;
     for (i = pg; i <= pg + 4; i++) {
-        p = lsPacientes[i];
-        if (p != undefined) {
-            texto += `<tr onclick='carregarPaciente(${i})'><td>${p.id}</td><td>${p.nome}</td><td>${p.status}</td><td>${p.local}</td><td>${p.entrada}</td>
-            <td>${p.inicio}</td><td>${p.fim}</td><td>${p.saida}</td></tr>`;
+        paciente = lsPacientes[i];
+        if (paciente != undefined) {
+            Linha += 
+            `<tr onclick='carregarPaciente(${i})'>
+            <td>${paciente.id}</td>
+            <td>${paciente.nome}</td>
+            <td class='stat-color'>${paciente.status}</td>
+            <td>${paciente.local}</td>
+            <td>${paciente.entrada}</td>
+            <td>${paciente.inicio}</td>
+            <td>${paciente.fim}</td>
+            <td>${paciente.saida}</td>
+            </tr>`
+
+            if (pacient.status=='Pré-Operatório'){
+                document.getElementsByClassName("stat-color")[i].style.backgroundColor = 'yellow'
+        
+            }else if (pacient.status=='Transferido'){
+                document.getElementsByClassName("stat-color")[i].style.backgroundColor = 'blue'
+        
+            }else if (pacient.status=='Em Cirurgia'){
+                document.getElementsByClassName("stat-color")[i].style.backgroundColor = 'red'
+            }else if (pacient.status=='Em Recuperação'){
+                document.getElementsByClassName("stat-color")[i].style.backgroundColor = 'green'
+        }
         }
     }
-    document.getElementById("tbCorpo").innerHTML=texto;
+    document.getElementById("tbCorpo").innerHTML=Linha;
 }
 
-function carregarPaciente(i) {
-    p = lsPacientes[i];
-    document.getElementById("id").value=p.id;
-    document.getElementById("nome").value = p.nome ;
-    document.getElementById("local").value = p.local;
-    document.getElementById("entrada").value= p.entrada ;
-    document.getElementById("inicio").value=p.inicio ;
-    document.getElementById("fim").value= p.fim;
-    document.getElementById("saida").value= p.saida;
+const CarregarPaciente=(i)=> {
+    paciente = lsPacientes[i]
+    document.getElementById("id").value=paciente.id
+    document.getElementById("nome").value = paciente.nome 
+    document.getElementById("local").value = paciente.local
+    document.getElementById("entrada").value= paciente.entrada 
+    document.getElementById("inicio").value=paciente.inicio 
+    document.getElementById("fim").value= paciente.fim
+    document.getElementById("saida").value= paciente.saida
     
 }
 
-function apagar() {
+const ApagarPaciente=()=> {
     id = document.getElementById("id").value;
     if (id == "") {
         alert("Selecione um registro!");
@@ -114,12 +144,13 @@ function apagar() {
         return;
     }
 
-    const xhttp = new XMLHttpRequest();
+    const xhttpaciente = new XMLHttpRequest();
     xhttp.open("DELETE", "/demo/excluir/" + id);
     xhttp.send();
-    xhttp.onload = function () {
+    xhttp.onload = ()=> {
         alert(this.responseText);
-        atualizarTabela();
-        limpar();
+        AtualizarTabela();
+        LimparCampos();
     }
 }
+AtualizarTabela()
