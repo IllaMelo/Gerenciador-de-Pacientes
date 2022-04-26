@@ -1,0 +1,149 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
+    
+
+}
+
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    flex-direction: column;
+    width: 100vw;
+    
+
+
+}
+
+    form{
+        height:50%;
+        margin: 0.5em;
+    }
+  
+    input[type="button"]{
+        padding: 0.5rem;
+        width: 150px;
+        cursor: pointer;
+        color: white;
+        font-weight: 900;
+        margin-bottom: 0.5rem;
+        
+        
+    }
+    input[type="button"]:nth-of-type(2){
+          background-color: green;}
+    input[type="button"]:nth-of-type(3){
+          background-color: yellow;}
+    input[type="button"]:nth-of-type(4){
+          background-color: red;}
+    input[type="button"]:hover{
+          color:black;
+          opacity: 0.5;
+}
+    input:focus{
+        border-color: #cccccc;
+        outline: 0;
+        -webkit-box-shadow: none;
+                box-shadow: none;
+    }
+
+    table{
+        
+        font-size: 0.7em;
+        width: 100vw;
+        text-align: center;
+      
+    }
+    td, th {
+        border: 1px solid #ddd;
+        padding: 0.1em;
+        text-align: center;
+      }
+      
+      tr:nth-child(even){background-color: #f2f2f2;}
+      
+      tr:hover {background-color: #ddd;
+        cursor: pointer;
+    }
+        .select{
+            background-color: #000610;
+        }
+      
+      th {
+        padding-top: 0.2em;
+        padding-bottom: 0.2em;
+        background-color: #095ad4;
+        color: white;
+       
+        
+      }
+    ul{
+        display: flex;
+        flex-direction: row;
+        margin-left: 0.5rem;
+        
+     
+        list-style: none;
+        margin: 1.5em 0.5rem ;
+        
+        
+    }
+        li{
+            
+           
+            padding: 0.4em;
+            margin-right: 0.1em;
+            background-color: rgb(207, 207, 243);
+            color: black;
+        }
+        li:hover{
+            cursor: pointer;
+            opacity: 0.5;
+        }
+            a{
+                text-decoration: none;
+                font-weight: 700;
+            }
+    div {
+        display: flex;
+        font-size: 1em;
+       
+    
+    }
+        .container-title{
+            flex-direction: column;
+            padding: 2rem;
+            color: white;
+            background-color: blue;
+            text-align: center;
+        }
+        .row-2{
+            flex-direction: row;
+            justify-content: space-between;
+          
+            
+
+        }
+        .row-4{
+            flex-direction: row;
+            justify-content: space-between;
+            
+        }
+        .col-1{
+            flex-direction: column;
+        }
+        .col-2{
+            width: 49.5%;
+            flex-direction: column;
+            
+        }
+        .col-4{
+            width: 24%;
+            flex-direction: column;
+            
+        }
+            
